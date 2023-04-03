@@ -6,7 +6,7 @@ This is an application of weather dashboard. It showcases the skills of using ja
 
 ## Screenshot
 
-![weather dashboard](./Assets/Screenshot.png)
+![weather dashboard](./Assest/Screenshot.png)
 
 ## Link
 
