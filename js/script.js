@@ -75,14 +75,16 @@ button.on("click", function () {
 });
 
 //localStorage to keep search data under as a list
-var savedHistory = JSON.parse(localStorage.getItem("history"));
+
 button.on("click", function (event) {
+  var savedHistory = JSON.parse(localStorage.getItem("history"));
   event.preventDefault();
   var inputValue = input.val();
+  
   if (!inputValue == null) {
     savedHistory.push(inputValue);
     localStorage.setItem("history", JSON.stringify(savedHistory));
-
+    console.log(savedHistory);
     //add input value to history list
     var historyItem = $("<li>");
     historyItem.text() = inputValue;
