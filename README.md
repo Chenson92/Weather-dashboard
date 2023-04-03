@@ -6,6 +6,8 @@ This is an application of weather dashboard. It showcases the skills of using ja
 
 ## Screenshot
 
-![work day scheduler](./Assets/Screenshot.png)
+![weather dashboard](./Assets/Screenshot.png)
 
 ## Link
+
+https://chenson92.github.io/Weather-dashboard/
