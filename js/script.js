@@ -34,7 +34,7 @@ button.on("click", function () {
 button.on("click", function () {
   var city = input.val();
 
-  // Construct the API endpoint URL to include temperature, icon, wind, and humidity
+  // Construct the API to include temperature, icon, wind, and humidity
   var url =
     "https://api.openweathermap.org/data/2.5/forecast?q=" +
     city +
@@ -55,7 +55,7 @@ button.on("click", function () {
       dateString = dayjs(date).add(i, "day").format("MM-DD-YY");
 
       var temp = Math.round(forecast.main.temp);
-      
+
       //var description = forecast.weather[0].description;
       var iconCode = forecast.weather[0].icon;
       var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
@@ -77,17 +77,35 @@ button.on("click", function () {
 //localStorage to keep search data under as a list
 
 button.on("click", function (event) {
-  var savedHistory = JSON.parse(localStorage.getItem("history"));
+  // Get the saved history from storage if it exists, otherwise start fresh.
+  var savedHistory = JSON.parse(localStorage.getItem("history")) ?? [];
   event.preventDefault();
+
+  // Get the city name that the user typed in.
   var inputValue = input.val();
-  
-  if (!inputValue == null) {
+
+  // If the user did type something...
+  if (inputValue) {
+    // Then add the city name that the user typed into the savedHistory.
     savedHistory.push(inputValue);
+    // Then store the updated savedHistory into the localStorage.
     localStorage.setItem("history", JSON.stringify(savedHistory));
-    console.log(savedHistory);
-    //add input value to history list
+
+    // Then display the new city name on history list (Not related to local storage).
     var historyItem = $("<li>");
-    historyItem.text() = inputValue;
+    historyItem.text(inputValue);
     historyList.append(historyItem);
   }
 });
+
+// Display search history as a list under the search button
+function setHistoryList() {
+  var savedHistory = JSON.parse(localStorage.getItem("history")) ?? [];
+  for (var i = 0; i < savedHistory.length; i++) {
+    var historyItem = $("<li>");
+    historyItem.text(savedHistory[i]);
+    historyList.append(historyItem);
+  }
+}
+
+setHistoryList();
